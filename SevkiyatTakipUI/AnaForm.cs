@@ -32,12 +32,13 @@ namespace SevkiyatTakipUI
         List<SevkiyatView> Sevkiyatlar;
         private void AnaForm_Load(object sender, EventArgs e)
         {
-          int currentYear = DateTime.Now.Year;
-          int currentWeek = HaftaNo(DateTime.Now);
-          int currentday = (int)DateTime.Now.DayOfWeek;
+            int currentYear = DateTime.Now.Year;
+            int currentWeek = HaftaNo(DateTime.Now);
+            int currentday = (int)DateTime.Now.DayOfWeek;
+            bool giris;
 
 
-        cmbYil.Text = currentYear.ToString();
+            cmbYil.Text = currentYear.ToString();
 
             List<int> Haftalar = new List<int>();
             for (int i = 1; i <= 54; i++)
@@ -57,13 +58,13 @@ namespace SevkiyatTakipUI
             cmbHafta.DataSource = Haftalar;
             cmbGun.DataSource = Gunler;
 
-            
+
             cmbHafta.Text = currentWeek.ToString();
             cmbGun.SelectedIndex = currentday - 1;
 
 
-            
-            lblYil.Text = cmbYil.Text+",";
+
+            lblYil.Text = cmbYil.Text + ",";
             lblHafta.Text = cmbHafta.Text + ",";
             lblGun.Text = cmbGun.Text;
             GunlukSevkListele();
@@ -147,9 +148,9 @@ namespace SevkiyatTakipUI
             {
                 string bilgisayarAdi = System.Windows.Forms.SystemInformation.UserName;
 
-                string fileName = DateTime.Now.ToShortDateString()+" Sevkiyatlar.xlsx";
-      
-                string customExcelSavingPath = @"C:\Users\"+bilgisayarAdi+ @"\Documents" + "\\" + fileName;
+                string fileName = DateTime.Now.ToShortDateString() + " Sevkiyatlar.xlsx";
+
+                string customExcelSavingPath = @"C:\Users\" + bilgisayarAdi + @"\Documents" + "\\" + fileName;
                 ExportToExcel.GenerateExcel(ExportToExcel.ConvertToDataTable(Sevkiyatlar), customExcelSavingPath);
             }
             catch (Exception ex)
@@ -167,19 +168,19 @@ namespace SevkiyatTakipUI
 
         private void btnDuzenle_Click(object sender, EventArgs e)
         {
-            if (Parametre.sevkiyatId==0)
+            if (Parametre.sevkiyatId == 0)
             {
                 MessageBox.Show(Constants.SevkiyatBos, Constants.MesajBaslik);
             }
             else
             {
                 Parametre.currentday = cmbGun.SelectedIndex + 1;
-                Parametre.currentWeek =Convert.ToInt32(cmbHafta.Text);
-                Parametre.currentYear= Convert.ToInt32(cmbYil.Text);
+                Parametre.currentWeek = Convert.ToInt32(cmbHafta.Text);
+                Parametre.currentYear = Convert.ToInt32(cmbYil.Text);
 
                 new SevkiyatDuzenle().ShowDialog();
             }
-            
+
         }
     }
 }
