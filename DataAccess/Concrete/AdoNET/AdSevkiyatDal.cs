@@ -209,5 +209,26 @@ namespace DataAccess.Concrete.AdoNET
             }
         }
 
+        public int Sil(Sevkiyat sevkiyat)
+        {
+            using(SqlCommand command=new SqlCommand("DELETE FROM SevkiyatTakip.Sevkiyatlar WHERE Id=@Id",Connection.sqlConn))
+            {
+                command.Parameters.AddWithValue("@Id", sevkiyat.Id);
+                try
+                {
+                    Connection.OpenConnection();
+                    int result = command.ExecuteNonQuery();
+                    Connection.sqlConn.Close();
+                    return result;
+                }
+                catch (Exception)
+                {
+                    
+                    return 0;
+                }
+               
+                
+            }
+        }
     }
 }

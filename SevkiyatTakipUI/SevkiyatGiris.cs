@@ -98,6 +98,11 @@ namespace SevkiyatTakipUI
 
         private void SevkiyatGiris_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Parametre.currentday = (int)dateTimePicker1.Value.DayOfWeek;
+            Parametre.currentYear = dateTimePicker1.Value.Year;
+            Parametre.currentWeek = Parametre.HaftaNo(dateTimePicker1.Value);
+
+
             AnaForm anaForm = new AnaForm();
             anaForm.Name = "anaForm";
             if (Application.OpenForms["anaForm"] == null)
@@ -106,7 +111,17 @@ namespace SevkiyatTakipUI
             }
             else
             {
-                ((AnaForm)Application.OpenForms["anaForm"]).dgvSevkiyatlar.DataSource = sevkiyatManager.GunlukSevkiyatlariListele(2021, 19, 3);
+                ((AnaForm)Application.OpenForms["anaForm"]).dgvSevkiyatlar.DataSource = sevkiyatManager.GunlukSevkiyatlariListele(Parametre.currentYear, Parametre.currentWeek, Parametre.currentday);
+
+                ((AnaForm)Application.OpenForms["anaForm"]).cmbYil.Text= Parametre.currentYear.ToString();
+                ((AnaForm)Application.OpenForms["anaForm"]). cmbHafta.Text = Parametre.currentWeek.ToString();
+                ((AnaForm)Application.OpenForms["anaForm"]).cmbGun.SelectedIndex= Parametre.currentday-1;
+
+                ((AnaForm)Application.OpenForms["anaForm"]).lblYil.Text = ((AnaForm)Application.OpenForms["anaForm"]).cmbYil.Text + ",";
+                ((AnaForm)Application.OpenForms["anaForm"]).lblHafta.Text = ((AnaForm)Application.OpenForms["anaForm"]).cmbHafta.Text + ",";
+                ((AnaForm)Application.OpenForms["anaForm"]).lblGun.Text = ((AnaForm)Application.OpenForms["anaForm"]).cmbGun.Text;
+
+
             }
         }
     }

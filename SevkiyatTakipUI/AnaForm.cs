@@ -17,6 +17,7 @@ using Microsoft.Office.Interop;
 using System.Net;
 using System.Security.Principal;
 using Business;
+using Entities;
 
 namespace SevkiyatTakipUI
 {
@@ -29,16 +30,19 @@ namespace SevkiyatTakipUI
 
 
         SevkiyatManager sevkiyatManager = new SevkiyatManager(new AdSevkiyatDal());
-        List<SevkiyatView> Sevkiyatlar;
+        public List<SevkiyatView> Sevkiyatlar;
+        public int listeGorunum;
+
+        
         private void AnaForm_Load(object sender, EventArgs e)
         {
             int currentYear = DateTime.Now.Year;
-            int currentWeek = HaftaNo(DateTime.Now);
+            int currentWeek = Parametre.HaftaNo(DateTime.Now);
             int currentday = (int)DateTime.Now.DayOfWeek;
-            bool giris;
+            
 
 
-            cmbYil.Text = currentYear.ToString();
+            
 
             List<int> Haftalar = new List<int>();
             for (int i = 1; i <= 54; i++)
@@ -58,30 +62,55 @@ namespace SevkiyatTakipUI
             cmbHafta.DataSource = Haftalar;
             cmbGun.DataSource = Gunler;
 
-
+            cmbYil.Text = currentYear.ToString();
             cmbHafta.Text = currentWeek.ToString();
             cmbGun.SelectedIndex = currentday - 1;
 
-
-
-            lblYil.Text = cmbYil.Text + ",";
-            lblHafta.Text = cmbHafta.Text + ",";
-            lblGun.Text = cmbGun.Text;
             GunlukSevkListele();
 
+            
+        }
 
+        void SevkListele()
+        {
+            if (listeGorunum==1)
+            {
+                Sevkiyatlar = sevkiyatManager.GunlukSevkiyatlariListele(Convert.ToInt32(cmbYil.Text), Convert.ToInt32(cmbHafta.Text), Gun());
+                dgvSevkiyatlar.DataSource = Sevkiyatlar;
+
+                lblYil.Text = cmbYil.Text + ",";
+                lblHafta.Text = cmbHafta.Text + ",";
+                lblGun.Text = cmbGun.Text;
+
+                lblGorunumAd.Text = "GÜNLÜK GÖRÜNÜM";
+                Parametre.sevkiyatId = 0;
+            }
+            else if (listeGorunum==2)
+            {
+                Sevkiyatlar = sevkiyatManager.HaftalikSevkiyatlar(Convert.ToInt32(cmbYil.Text), Convert.ToInt32(cmbHafta.Text));
+                dgvSevkiyatlar.DataSource = Sevkiyatlar;
+
+                lblYil.Text = cmbYil.Text + ",";
+                lblHafta.Text = cmbHafta.Text + ",";
+                lblGun.Text = cmbGun.Text;
+
+                lblGorunumAd.Text = "HAFTALIK GÖRÜNÜM";
+                Parametre.sevkiyatId = 0;
+            }
         }
 
         private void GunlukSevkListele()
         {
-            Sevkiyatlar = sevkiyatManager.GunlukSevkiyatlariListele(Convert.ToInt32(cmbYil.Text), Convert.ToInt32(cmbHafta.Text), Gun());
-            dgvSevkiyatlar.DataSource = Sevkiyatlar;
+            listeGorunum = 1;
+
+            SevkListele();
         }
 
         private void HafalikSevkListele()
         {
-            Sevkiyatlar = sevkiyatManager.HaftalikSevkiyatlar(Convert.ToInt32(cmbYil.Text), Convert.ToInt32(cmbHafta.Text));
-            dgvSevkiyatlar.DataSource = Sevkiyatlar;
+            listeGorunum = 2;
+
+            SevkListele();
         }
 
         private void btnYeniSevkiyat_Click(object sender, EventArgs e)
@@ -92,6 +121,7 @@ namespace SevkiyatTakipUI
         private void btnGunlukGorunum_Click(object sender, EventArgs e)
         {
             GunlukSevkListele();
+            
         }
 
         int Gun()
@@ -125,39 +155,36 @@ namespace SevkiyatTakipUI
                 return 7;
             }
         }
-
-        int HaftaNo(DateTime Tarih)
-        {
-            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(Tarih);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                Tarih = Tarih.AddDays(3);
-            }
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(Tarih, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-
-        }
-
+      
         private void btnHaftalikGorunum_Click(object sender, EventArgs e)
         {
             HafalikSevkListele();
+
+           
         }
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            try
+            if (dgvSevkiyatlar.RowCount > 0)
             {
-                string bilgisayarAdi = System.Windows.Forms.SystemInformation.UserName;
+                try
+                {
+                    string bilgisayarAdi = System.Windows.Forms.SystemInformation.UserName;
 
-                string fileName = DateTime.Now.ToShortDateString() + " Sevkiyatlar.xlsx";
+                    string fileName = DateTime.Now.ToShortDateString() + " Sevkiyatlar.xlsx";
 
-                string customExcelSavingPath = @"C:\Users\" + bilgisayarAdi + @"\Documents" + "\\" + fileName;
-                ExportToExcel.GenerateExcel(ExportToExcel.ConvertToDataTable(Sevkiyatlar), customExcelSavingPath);
+                    string customExcelSavingPath = @"C:\Users\" + bilgisayarAdi + @"\Documents" + "\\" + fileName;
+                    ExportToExcel.GenerateExcel(ExportToExcel.ConvertToDataTable(Sevkiyatlar), customExcelSavingPath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(Constants.ExcelAktar, Constants.MesajBaslik);
             }
-
 
         }
 
@@ -181,6 +208,38 @@ namespace SevkiyatTakipUI
                 new SevkiyatDuzenle().ShowDialog();
             }
 
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            if (Parametre.sevkiyatId==0)
+            {
+                MessageBox.Show(Constants.SevkiyatBos, Constants.MesajBaslik);
+            }
+            else
+            {
+                DialogResult silinsinMi = MessageBox.Show(Constants.SevkiyatSil, Constants.MesajBaslik, MessageBoxButtons.YesNo);
+                if (silinsinMi==DialogResult.Yes)
+                {
+                    sevkiyatManager.Sil(new Sevkiyat
+                    {
+                        Id = Parametre.sevkiyatId
+                    });
+
+                    SevkListele();
+                }
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            int currentYear = dateTimePicker1.Value.Year;
+            int currentWeek = Parametre.HaftaNo(dateTimePicker1.Value);
+            int currentday = (int)dateTimePicker1.Value.DayOfWeek;
+
+            cmbYil.Text = currentYear.ToString();
+            cmbHafta.Text = currentWeek.ToString();
+            cmbGun.SelectedIndex = currentday - 1;
         }
     }
 }

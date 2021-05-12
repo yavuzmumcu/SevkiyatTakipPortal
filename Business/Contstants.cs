@@ -20,5 +20,10 @@ namespace Business
         public static string SevkiyatBos = "Sevkiyat Seçilmedi!";
 
         public static string MesajBaslik = "Sevkiyat Takip";
+
+
+        public static string SevkiyatSil = "Seçili Sevkiyatı Silmek İstiyor musun?";
+
+        public static string ExcelAktar = "Aktarılacak Kayıt Bulunamadı!";
     }
 }

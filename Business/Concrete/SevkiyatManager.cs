@@ -43,5 +43,10 @@ namespace Business.Concrete
         {
             return _sevkiyatDal.SevkiyatDeger(sevkiyatId);
         }
+
+        public int Sil(Sevkiyat sevkiyat)
+        {
+            return _sevkiyatDal.Sil(sevkiyat);
+        }
     }
 }

@@ -46,6 +46,7 @@ namespace SevkiyatTakipUI
             this.icerikPanel = new System.Windows.Forms.Panel();
             this.tLPanelIcerik = new System.Windows.Forms.TableLayoutPanel();
             this.panelUst = new System.Windows.Forms.Panel();
+            this.lblGorunumAd = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.lblYil = new System.Windows.Forms.Label();
@@ -54,14 +55,17 @@ namespace SevkiyatTakipUI
             this.label7 = new System.Windows.Forms.Label();
             this.lblGun = new System.Windows.Forms.Label();
             this.panelAlt = new System.Windows.Forms.Panel();
+            this.btnSil = new System.Windows.Forms.Button();
             this.dgvSevkiyatlar = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.icerikPanel.SuspendLayout();
             this.tLPanelIcerik.SuspendLayout();
             this.panelUst.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.panelAlt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSevkiyatlar)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +73,7 @@ namespace SevkiyatTakipUI
             // headerPanel
             // 
             this.headerPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.headerPanel.Controls.Add(this.dateTimePicker1);
             this.headerPanel.Controls.Add(this.btnDuzenle);
             this.headerPanel.Controls.Add(this.pictureBox1);
             this.headerPanel.Controls.Add(this.btnYeniSevkiyat);
@@ -88,6 +93,7 @@ namespace SevkiyatTakipUI
             // 
             // btnDuzenle
             // 
+            this.btnDuzenle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDuzenle.Location = new System.Drawing.Point(954, 50);
             this.btnDuzenle.Name = "btnDuzenle";
             this.btnDuzenle.Size = new System.Drawing.Size(100, 23);
@@ -109,6 +115,7 @@ namespace SevkiyatTakipUI
             // 
             // btnYeniSevkiyat
             // 
+            this.btnYeniSevkiyat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnYeniSevkiyat.Location = new System.Drawing.Point(954, 12);
             this.btnYeniSevkiyat.Name = "btnYeniSevkiyat";
             this.btnYeniSevkiyat.Size = new System.Drawing.Size(100, 23);
@@ -119,7 +126,7 @@ namespace SevkiyatTakipUI
             // 
             // btnGunlukGorunum
             // 
-            this.btnGunlukGorunum.Location = new System.Drawing.Point(382, 59);
+            this.btnGunlukGorunum.Location = new System.Drawing.Point(300, 50);
             this.btnGunlukGorunum.Name = "btnGunlukGorunum";
             this.btnGunlukGorunum.Size = new System.Drawing.Size(112, 23);
             this.btnGunlukGorunum.TabIndex = 7;
@@ -129,7 +136,7 @@ namespace SevkiyatTakipUI
             // 
             // btnHaftalikGorunum
             // 
-            this.btnHaftalikGorunum.Location = new System.Drawing.Point(263, 59);
+            this.btnHaftalikGorunum.Location = new System.Drawing.Point(423, 50);
             this.btnHaftalikGorunum.Name = "btnHaftalikGorunum";
             this.btnHaftalikGorunum.Size = new System.Drawing.Size(100, 23);
             this.btnHaftalikGorunum.TabIndex = 6;
@@ -140,7 +147,7 @@ namespace SevkiyatTakipUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(482, 17);
+            this.label3.Location = new System.Drawing.Point(519, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 5;
@@ -149,7 +156,7 @@ namespace SevkiyatTakipUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(353, 17);
+            this.label2.Location = new System.Drawing.Point(390, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 4;
@@ -158,7 +165,7 @@ namespace SevkiyatTakipUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(239, 17);
+            this.label1.Location = new System.Drawing.Point(276, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 3;
@@ -168,7 +175,7 @@ namespace SevkiyatTakipUI
             // 
             this.cmbGun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGun.FormattingEnabled = true;
-            this.cmbGun.Location = new System.Drawing.Point(521, 12);
+            this.cmbGun.Location = new System.Drawing.Point(558, 12);
             this.cmbGun.Name = "cmbGun";
             this.cmbGun.Size = new System.Drawing.Size(84, 21);
             this.cmbGun.TabIndex = 2;
@@ -177,7 +184,7 @@ namespace SevkiyatTakipUI
             // 
             this.cmbHafta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHafta.FormattingEnabled = true;
-            this.cmbHafta.Location = new System.Drawing.Point(392, 14);
+            this.cmbHafta.Location = new System.Drawing.Point(429, 14);
             this.cmbHafta.Name = "cmbHafta";
             this.cmbHafta.Size = new System.Drawing.Size(84, 21);
             this.cmbHafta.TabIndex = 1;
@@ -188,7 +195,7 @@ namespace SevkiyatTakipUI
             this.cmbYil.FormattingEnabled = true;
             this.cmbYil.Items.AddRange(new object[] {
             "2021"});
-            this.cmbYil.Location = new System.Drawing.Point(263, 14);
+            this.cmbYil.Location = new System.Drawing.Point(300, 14);
             this.cmbYil.Name = "cmbYil";
             this.cmbYil.Size = new System.Drawing.Size(84, 21);
             this.cmbYil.TabIndex = 0;
@@ -242,6 +249,7 @@ namespace SevkiyatTakipUI
             // panelUst
             // 
             this.panelUst.BackColor = System.Drawing.Color.Moccasin;
+            this.panelUst.Controls.Add(this.lblGorunumAd);
             this.panelUst.Controls.Add(this.flowLayoutPanel1);
             this.panelUst.Controls.Add(this.btnExcel);
             this.panelUst.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -249,6 +257,16 @@ namespace SevkiyatTakipUI
             this.panelUst.Name = "panelUst";
             this.panelUst.Size = new System.Drawing.Size(1172, 35);
             this.panelUst.TabIndex = 10;
+            // 
+            // lblGorunumAd
+            // 
+            this.lblGorunumAd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGorunumAd.AutoSize = true;
+            this.lblGorunumAd.Location = new System.Drawing.Point(938, 10);
+            this.lblGorunumAd.Name = "lblGorunumAd";
+            this.lblGorunumAd.Size = new System.Drawing.Size(35, 13);
+            this.lblGorunumAd.TabIndex = 11;
+            this.lblGorunumAd.Text = "label5";
             // 
             // flowLayoutPanel1
             // 
@@ -336,11 +354,23 @@ namespace SevkiyatTakipUI
             // panelAlt
             // 
             this.panelAlt.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelAlt.Controls.Add(this.btnSil);
             this.panelAlt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAlt.Location = new System.Drawing.Point(3, 504);
             this.panelAlt.Name = "panelAlt";
             this.panelAlt.Size = new System.Drawing.Size(1172, 49);
             this.panelAlt.TabIndex = 2;
+            // 
+            // btnSil
+            // 
+            this.btnSil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSil.Location = new System.Drawing.Point(1091, 11);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(65, 23);
+            this.btnSil.TabIndex = 11;
+            this.btnSil.Text = "SİL";
+            this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
             // dgvSevkiyatlar
             // 
@@ -373,12 +403,22 @@ namespace SevkiyatTakipUI
             this.tableLayoutPanel.Size = new System.Drawing.Size(1184, 662);
             this.tableLayoutPanel.TabIndex = 2;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(179, 12);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(88, 20);
+            this.dateTimePicker1.TabIndex = 11;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // AnaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 662);
             this.Controls.Add(this.tableLayoutPanel);
+            this.MinimumSize = new System.Drawing.Size(1000, 500);
             this.Name = "AnaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SEVKİYAT TAKİP";
@@ -389,8 +429,10 @@ namespace SevkiyatTakipUI
             this.icerikPanel.ResumeLayout(false);
             this.tLPanelIcerik.ResumeLayout(false);
             this.panelUst.ResumeLayout(false);
+            this.panelUst.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.panelAlt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSevkiyatlar)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -405,9 +447,6 @@ namespace SevkiyatTakipUI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbGun;
-        private System.Windows.Forms.ComboBox cmbHafta;
-        private System.Windows.Forms.ComboBox cmbYil;
         private System.Windows.Forms.Panel icerikPanel;
         private System.Windows.Forms.TableLayoutPanel tLPanelIcerik;
         private System.Windows.Forms.Panel panelAlt;
@@ -417,14 +456,20 @@ namespace SevkiyatTakipUI
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblYil;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblHafta;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lblGun;
         private System.Windows.Forms.Panel panelUst;
         private System.Windows.Forms.Button btnDuzenle;
         public System.Windows.Forms.DataGridView dgvSevkiyatlar;
+        public System.Windows.Forms.Label lblGorunumAd;
+        private System.Windows.Forms.Button btnSil;
+        public System.Windows.Forms.ComboBox cmbGun;
+        public System.Windows.Forms.ComboBox cmbHafta;
+        public System.Windows.Forms.ComboBox cmbYil;
+        public System.Windows.Forms.Label lblYil;
+        public System.Windows.Forms.Label lblHafta;
+        public System.Windows.Forms.Label lblGun;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

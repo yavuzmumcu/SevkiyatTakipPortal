@@ -19,5 +19,7 @@ namespace DataAccess.Abstract
         Sevkiyat SevkiyatDeger(int sevkiyatId);
 
         int Guncelle(Sevkiyat sevkiyat);
+
+        int Sil(Sevkiyat sevkiyat);
     }
 }

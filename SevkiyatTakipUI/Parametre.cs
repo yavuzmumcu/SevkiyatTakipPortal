@@ -15,7 +15,16 @@ namespace SevkiyatTakipUI
 
         public static int sevkiyatId=0;
 
-        
-        
+        public static int HaftaNo(DateTime Tarih)
+        {
+            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(Tarih);
+            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
+            {
+                Tarih = Tarih.AddDays(3);
+            }
+            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(Tarih, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+        }
+
     }
 }
