@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arac.cs" />
+    <Compile Include="DTOs\SevkiyatGuncellemeView.cs" />
     <Compile Include="DTOs\SevkiyatView.cs" />
+    <Compile Include="Durum.cs" />
     <Compile Include="Musteri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sevkiyat.cs" />
+    <Compile Include="SevkiyatGuncelleme.cs" />
     <Compile Include="YuklemeTip.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

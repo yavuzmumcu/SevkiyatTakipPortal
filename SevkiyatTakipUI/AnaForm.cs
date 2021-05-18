@@ -241,5 +241,18 @@ namespace SevkiyatTakipUI
             cmbHafta.Text = currentWeek.ToString();
             cmbGun.SelectedIndex = currentday - 1;
         }
+
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            if (Parametre.sevkiyatId == 0)
+            {
+                MessageBox.Show(Constants.SevkiyatBos, Constants.MesajBaslik);
+            }
+            else
+            {
+                new GuncellemeGir().ShowDialog();
+            }
+               
+        }
     }
 }

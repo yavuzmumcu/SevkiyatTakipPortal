@@ -230,5 +230,71 @@ namespace DataAccess.Concrete.AdoNET
                 
             }
         }
+
+        public SevkiyatView SevkiyatViewDeger(int sevkiyatId)
+        {
+            using (SqlCommand command = new SqlCommand("SELECT * FROM SevkiyatTakip.View_Sevkiyatlar WHERE Id=@sevkiyatId", Connection.sqlConn))
+            {
+                command.Parameters.AddWithValue("@sevkiyatId", sevkiyatId);
+
+                Connection.OpenConnection();
+
+                SqlDataReader dataReader = command.ExecuteReader();
+
+
+                if (dataReader.HasRows)
+                {
+                    SevkiyatView sevkiyatView = new SevkiyatView();
+                    while (dataReader.Read())
+                    {
+                        sevkiyatView.SevkiyatId = sevkiyatId;
+                        sevkiyatView.MusteriAd = dataReader["MusteriAd"].ToString();
+                        sevkiyatView.Adet = Convert.ToInt32(dataReader["Adet"]);
+                        sevkiyatView.SevkAraci = dataReader["SevkAraci"].ToString();
+                        sevkiyatView.PlakaNo = dataReader["PlakaNo"].ToString();
+                        sevkiyatView.YuklemeTip = dataReader["YuklemeTip"].ToString();
+                        sevkiyatView.Ulke = dataReader["Ulke"].ToString();
+                        sevkiyatView.Aciklama = dataReader["Aciklama"].ToString();
+                        sevkiyatView.LojistikFirma = dataReader["LojistikFirma"].ToString();
+                        sevkiyatView.SiparisNo = dataReader["LojistikFirma"].ToString();
+                        sevkiyatView.TerminTarih = Convert.ToDateTime(dataReader["TerminTarih"]);
+                        sevkiyatView.Durum = dataReader["Durum"].ToString();
+                    }
+                    Connection.sqlConn.Close();
+                    dataReader.Close();
+                    return sevkiyatView;
+                }
+                else
+                {
+                    Connection.sqlConn.Close();
+                    dataReader.Close();
+                    return null;
+                }
+
+
+            }
+        }
+
+        public int DurumGuncelle(Sevkiyat sevkiyat)
+        {
+            using (SqlCommand command = new SqlCommand("UPDATE SevkiyatTakip.Sevkiyatlar SET " +
+                "durumId=@durumId " +
+                "WHERE Id=@Id",
+                Connection.sqlConn))
+            {
+                command.Parameters.AddWithValue("@durumId", sevkiyat.DurumId);
+                
+
+                command.Parameters.AddWithValue("@Id", sevkiyat.Id);
+
+                Connection.OpenConnection();
+
+                int sonuc = command.ExecuteNonQuery();
+
+                Connection.sqlConn.Close();
+
+                return sonuc;
+            }
+        }
     }
 }

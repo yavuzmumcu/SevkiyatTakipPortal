@@ -21,5 +21,9 @@ namespace Business.Abstract
         int Guncelle(Sevkiyat sevkiyat);
 
         int Sil(Sevkiyat sevkiyat);
+
+        SevkiyatView SevkiyatViewDeger(int sevkiyatId);
+
+        int DurumGuncelle(Sevkiyat sevkiyat);
     }
 }

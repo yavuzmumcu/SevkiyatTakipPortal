@@ -31,6 +31,7 @@ namespace SevkiyatTakipUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnaForm));
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnDuzenle = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnYeniSevkiyat = new System.Windows.Forms.Button();
@@ -58,7 +59,7 @@ namespace SevkiyatTakipUI
             this.btnSil = new System.Windows.Forms.Button();
             this.dgvSevkiyatlar = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnGuncelle = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.icerikPanel.SuspendLayout();
@@ -91,14 +92,26 @@ namespace SevkiyatTakipUI
             this.headerPanel.Size = new System.Drawing.Size(1178, 94);
             this.headerPanel.TabIndex = 0;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(179, 12);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(88, 20);
+            this.dateTimePicker1.TabIndex = 11;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // btnDuzenle
             // 
             this.btnDuzenle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDuzenle.Location = new System.Drawing.Point(954, 50);
+            this.btnDuzenle.Image = ((System.Drawing.Image)(resources.GetObject("btnDuzenle.Image")));
+            this.btnDuzenle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDuzenle.Location = new System.Drawing.Point(1066, 50);
             this.btnDuzenle.Name = "btnDuzenle";
-            this.btnDuzenle.Size = new System.Drawing.Size(100, 23);
+            this.btnDuzenle.Size = new System.Drawing.Size(100, 35);
             this.btnDuzenle.TabIndex = 10;
             this.btnDuzenle.Text = "DÜZENLE";
+            this.btnDuzenle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDuzenle.UseVisualStyleBackColor = true;
             this.btnDuzenle.Click += new System.EventHandler(this.btnDuzenle_Click);
             // 
@@ -116,11 +129,14 @@ namespace SevkiyatTakipUI
             // btnYeniSevkiyat
             // 
             this.btnYeniSevkiyat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnYeniSevkiyat.Location = new System.Drawing.Point(954, 12);
+            this.btnYeniSevkiyat.Image = ((System.Drawing.Image)(resources.GetObject("btnYeniSevkiyat.Image")));
+            this.btnYeniSevkiyat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnYeniSevkiyat.Location = new System.Drawing.Point(1039, 7);
             this.btnYeniSevkiyat.Name = "btnYeniSevkiyat";
-            this.btnYeniSevkiyat.Size = new System.Drawing.Size(100, 23);
+            this.btnYeniSevkiyat.Size = new System.Drawing.Size(127, 35);
             this.btnYeniSevkiyat.TabIndex = 8;
             this.btnYeniSevkiyat.Text = "YENİ SEVKİYAT";
+            this.btnYeniSevkiyat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnYeniSevkiyat.UseVisualStyleBackColor = true;
             this.btnYeniSevkiyat.Click += new System.EventHandler(this.btnYeniSevkiyat_Click);
             // 
@@ -301,16 +317,16 @@ namespace SevkiyatTakipUI
             this.lblYil.ForeColor = System.Drawing.Color.ForestGreen;
             this.lblYil.Location = new System.Drawing.Point(44, 0);
             this.lblYil.Name = "lblYil";
-            this.lblYil.Size = new System.Drawing.Size(60, 24);
+            this.lblYil.Size = new System.Drawing.Size(16, 24);
             this.lblYil.TabIndex = 2;
-            this.lblYil.Text = "label4";
+            this.lblYil.Text = "-";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label6.Location = new System.Drawing.Point(110, 0);
+            this.label6.Location = new System.Drawing.Point(66, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 24);
             this.label6.TabIndex = 3;
@@ -322,18 +338,18 @@ namespace SevkiyatTakipUI
             this.lblHafta.BackColor = System.Drawing.Color.Transparent;
             this.lblHafta.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblHafta.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblHafta.Location = new System.Drawing.Point(173, 0);
+            this.lblHafta.Location = new System.Drawing.Point(129, 0);
             this.lblHafta.Name = "lblHafta";
-            this.lblHafta.Size = new System.Drawing.Size(52, 24);
+            this.lblHafta.Size = new System.Drawing.Size(16, 24);
             this.lblHafta.TabIndex = 4;
-            this.lblHafta.Text = "Hafta";
+            this.lblHafta.Text = "-";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label7.Location = new System.Drawing.Point(231, 0);
+            this.label7.Location = new System.Drawing.Point(151, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 24);
             this.label7.TabIndex = 5;
@@ -345,15 +361,16 @@ namespace SevkiyatTakipUI
             this.lblGun.BackColor = System.Drawing.Color.Transparent;
             this.lblGun.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblGun.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblGun.Location = new System.Drawing.Point(288, 0);
+            this.lblGun.Location = new System.Drawing.Point(208, 0);
             this.lblGun.Name = "lblGun";
-            this.lblGun.Size = new System.Drawing.Size(52, 24);
+            this.lblGun.Size = new System.Drawing.Size(16, 24);
             this.lblGun.TabIndex = 6;
-            this.lblGun.Text = "Hafta";
+            this.lblGun.Text = "-";
             // 
             // panelAlt
             // 
             this.panelAlt.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelAlt.Controls.Add(this.btnGuncelle);
             this.panelAlt.Controls.Add(this.btnSil);
             this.panelAlt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAlt.Location = new System.Drawing.Point(3, 504);
@@ -364,11 +381,14 @@ namespace SevkiyatTakipUI
             // btnSil
             // 
             this.btnSil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSil.Location = new System.Drawing.Point(1091, 11);
+            this.btnSil.Image = ((System.Drawing.Image)(resources.GetObject("btnSil.Image")));
+            this.btnSil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSil.Location = new System.Drawing.Point(1101, 7);
             this.btnSil.Name = "btnSil";
-            this.btnSil.Size = new System.Drawing.Size(65, 23);
+            this.btnSil.Size = new System.Drawing.Size(65, 36);
             this.btnSil.TabIndex = 11;
             this.btnSil.Text = "SİL";
+            this.btnSil.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSil.UseVisualStyleBackColor = true;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
@@ -403,14 +423,19 @@ namespace SevkiyatTakipUI
             this.tableLayoutPanel.Size = new System.Drawing.Size(1184, 662);
             this.tableLayoutPanel.TabIndex = 2;
             // 
-            // dateTimePicker1
+            // btnGuncelle
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(179, 12);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(88, 20);
-            this.dateTimePicker1.TabIndex = 11;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.btnGuncelle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuncelle.Image = ((System.Drawing.Image)(resources.GetObject("btnGuncelle.Image")));
+            this.btnGuncelle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuncelle.Location = new System.Drawing.Point(7, 7);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(100, 35);
+            this.btnGuncelle.TabIndex = 12;
+            this.btnGuncelle.Text = "GÜNCELLE";
+            this.btnGuncelle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
             // 
             // AnaForm
             // 
@@ -470,6 +495,7 @@ namespace SevkiyatTakipUI
         public System.Windows.Forms.Label lblHafta;
         public System.Windows.Forms.Label lblGun;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnGuncelle;
     }
 }
 

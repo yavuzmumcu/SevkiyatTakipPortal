@@ -42,13 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAracDal.cs" />
+    <Compile Include="Abstract\IDurumDal.cs" />
     <Compile Include="Abstract\IMusteriDal.cs" />
     <Compile Include="Abstract\ISevkiyatDal.cs" />
+    <Compile Include="Abstract\ISevkiyatGuncellemeDal.cs" />
     <Compile Include="Abstract\IYuklemeTipDal.cs" />
     <Compile Include="Concrete\AdoNET\AdAracDal.cs" />
+    <Compile Include="Concrete\AdoNET\AdDurumDal.cs" />
     <Compile Include="Concrete\AdoNET\AdMusteriDal.cs" />
     <Compile Include="Concrete\AdoNET\AdSevkiyatDal.cs" />
     <Compile Include="Concrete\AdoNET\AdYuklemeTipDal.cs" />
+    <Compile Include="Concrete\AdoNET\AdSevkiyatGuncellemeDal.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

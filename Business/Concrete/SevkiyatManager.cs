@@ -19,6 +19,11 @@ namespace Business.Concrete
             _sevkiyatDal = sevkiyatDal;
         }
 
+        public int DurumGuncelle(Sevkiyat sevkiyat)
+        {
+            return _sevkiyatDal.DurumGuncelle(sevkiyat);
+        }
+
         public int Ekle(Sevkiyat sevkiyat )
         {
             return _sevkiyatDal.Ekle(sevkiyat);
@@ -42,6 +47,11 @@ namespace Business.Concrete
         public Sevkiyat SevkiyatDeger(int sevkiyatId)
         {
             return _sevkiyatDal.SevkiyatDeger(sevkiyatId);
+        }
+
+        public SevkiyatView SevkiyatViewDeger(int sevkiyatId)
+        {
+            return _sevkiyatDal.SevkiyatViewDeger(sevkiyatId);
         }
 
         public int Sil(Sevkiyat sevkiyat)
