@@ -147,6 +147,7 @@ namespace SevkiyatTakipUI
             this.cmbMusteri.Name = "cmbMusteri";
             this.cmbMusteri.Size = new System.Drawing.Size(240, 21);
             this.cmbMusteri.TabIndex = 2;
+            this.cmbMusteri.Leave += new System.EventHandler(this.cmbMusteri_Leave);
             // 
             // label6
             // 
@@ -160,6 +161,7 @@ namespace SevkiyatTakipUI
             // 
             // cmbArac
             // 
+            this.cmbArac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbArac.FormattingEnabled = true;
             this.cmbArac.Location = new System.Drawing.Point(99, 144);
             this.cmbArac.Name = "cmbArac";
@@ -178,6 +180,7 @@ namespace SevkiyatTakipUI
             // 
             // cmbYuklemeTip
             // 
+            this.cmbYuklemeTip.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbYuklemeTip.FormattingEnabled = true;
             this.cmbYuklemeTip.Location = new System.Drawing.Point(99, 211);
             this.cmbYuklemeTip.Name = "cmbYuklemeTip";

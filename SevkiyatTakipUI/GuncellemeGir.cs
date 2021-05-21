@@ -26,25 +26,22 @@ namespace SevkiyatTakipUI
 
         private void GuncellemeGir_Load(object sender, EventArgs e)
         {
-            cmbDurum.DataSource = durumManager.Listele();
-            cmbDurum.DisplayMember = "DurumAd";
-            cmbDurum.ValueMember = "Id";
+            Araclar.LoadComboBox(cmbDurum, durumManager.Listele(), "DurumAd", "Id");
 
             lblSevkiyatId.Text = Parametre.sevkiyatId.ToString();
-            SevkiyatGuncellemeListele();
 
-          
-            
-                var result = sevkiyatManager.SevkiyatViewDeger(Parametre.sevkiyatId);
-            
-            
+            SevkiyatGuncellemeListeleBySevkiyatId();
+
+            var result = sevkiyatManager.SevkiyatViewDeger(Parametre.sevkiyatId);
 
             lblMusteriAd.Text = result.MusteriAd.ToString();
+            lblTerminTarih.Text = result.TerminTarih.ToString().Trim();
 
+            cmbDurum.Text = result.Durum;
 
         }
 
-        private void SevkiyatGuncellemeListele()
+        private void SevkiyatGuncellemeListeleBySevkiyatId()
         {
             dgvSevkiyatGuncellemeleri.DataSource = sevkiyatGuncellemeManager.ListeleBySevkiyatId(Parametre.sevkiyatId);
         }
@@ -53,7 +50,7 @@ namespace SevkiyatTakipUI
         {
             SevkiyatGuncellemeEkle();
 
-            SevkiyatGuncellemeListele();
+            SevkiyatGuncellemeListeleBySevkiyatId();
 
             DurumGuncelle();
         }
@@ -77,6 +74,6 @@ namespace SevkiyatTakipUI
             });
         }
 
-        
+
     }
 }

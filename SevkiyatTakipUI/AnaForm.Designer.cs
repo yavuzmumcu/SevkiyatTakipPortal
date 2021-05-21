@@ -31,6 +31,7 @@ namespace SevkiyatTakipUI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnaForm));
             this.headerPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnDuzenle = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -56,10 +57,13 @@ namespace SevkiyatTakipUI
             this.label7 = new System.Windows.Forms.Label();
             this.lblGun = new System.Windows.Forms.Label();
             this.panelAlt = new System.Windows.Forms.Panel();
+            this.lblSevkiyatAdet = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnGuncelle = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
             this.dgvSevkiyatlar = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.btnGuncelle = new System.Windows.Forms.Button();
+            this.btnLog = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.icerikPanel.SuspendLayout();
@@ -74,6 +78,8 @@ namespace SevkiyatTakipUI
             // headerPanel
             // 
             this.headerPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.headerPanel.Controls.Add(this.btnLog);
+            this.headerPanel.Controls.Add(this.button1);
             this.headerPanel.Controls.Add(this.dateTimePicker1);
             this.headerPanel.Controls.Add(this.btnDuzenle);
             this.headerPanel.Controls.Add(this.pictureBox1);
@@ -91,6 +97,20 @@ namespace SevkiyatTakipUI
             this.headerPanel.Name = "headerPanel";
             this.headerPanel.Size = new System.Drawing.Size(1178, 94);
             this.headerPanel.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(906, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(127, 35);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "SEVKİYAT HAREKETLERİ";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dateTimePicker1
             // 
@@ -255,7 +275,7 @@ namespace SevkiyatTakipUI
             this.tLPanelIcerik.RowCount = 3;
             this.tLPanelIcerik.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.tLPanelIcerik.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPanelIcerik.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tLPanelIcerik.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tLPanelIcerik.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tLPanelIcerik.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tLPanelIcerik.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -370,13 +390,48 @@ namespace SevkiyatTakipUI
             // panelAlt
             // 
             this.panelAlt.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelAlt.Controls.Add(this.lblSevkiyatAdet);
+            this.panelAlt.Controls.Add(this.label5);
             this.panelAlt.Controls.Add(this.btnGuncelle);
             this.panelAlt.Controls.Add(this.btnSil);
             this.panelAlt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAlt.Location = new System.Drawing.Point(3, 504);
+            this.panelAlt.Location = new System.Drawing.Point(3, 498);
             this.panelAlt.Name = "panelAlt";
-            this.panelAlt.Size = new System.Drawing.Size(1172, 49);
+            this.panelAlt.Size = new System.Drawing.Size(1172, 55);
             this.panelAlt.TabIndex = 2;
+            // 
+            // lblSevkiyatAdet
+            // 
+            this.lblSevkiyatAdet.AutoSize = true;
+            this.lblSevkiyatAdet.Location = new System.Drawing.Point(128, 4);
+            this.lblSevkiyatAdet.Name = "lblSevkiyatAdet";
+            this.lblSevkiyatAdet.Size = new System.Drawing.Size(80, 13);
+            this.lblSevkiyatAdet.TabIndex = 14;
+            this.lblSevkiyatAdet.Text = "lblSevkiyatAdet";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(11, 2);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(115, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Toplam Sevkiyat:";
+            // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGuncelle.Image = ((System.Drawing.Image)(resources.GetObject("btnGuncelle.Image")));
+            this.btnGuncelle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuncelle.Location = new System.Drawing.Point(7, 18);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(100, 35);
+            this.btnGuncelle.TabIndex = 12;
+            this.btnGuncelle.Text = "GÜNCELLE";
+            this.btnGuncelle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
             // 
             // btnSil
             // 
@@ -404,7 +459,7 @@ namespace SevkiyatTakipUI
             this.dgvSevkiyatlar.Name = "dgvSevkiyatlar";
             this.dgvSevkiyatlar.ReadOnly = true;
             this.dgvSevkiyatlar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSevkiyatlar.Size = new System.Drawing.Size(1172, 454);
+            this.dgvSevkiyatlar.Size = new System.Drawing.Size(1172, 448);
             this.dgvSevkiyatlar.TabIndex = 0;
             this.dgvSevkiyatlar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSevkiyatlar_CellClick);
             // 
@@ -423,19 +478,19 @@ namespace SevkiyatTakipUI
             this.tableLayoutPanel.Size = new System.Drawing.Size(1184, 662);
             this.tableLayoutPanel.TabIndex = 2;
             // 
-            // btnGuncelle
+            // btnLog
             // 
-            this.btnGuncelle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuncelle.Image = ((System.Drawing.Image)(resources.GetObject("btnGuncelle.Image")));
-            this.btnGuncelle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuncelle.Location = new System.Drawing.Point(7, 7);
-            this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(100, 35);
-            this.btnGuncelle.TabIndex = 12;
-            this.btnGuncelle.Text = "GÜNCELLE";
-            this.btnGuncelle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGuncelle.UseVisualStyleBackColor = true;
-            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
+            this.btnLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLog.Image = ((System.Drawing.Image)(resources.GetObject("btnLog.Image")));
+            this.btnLog.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLog.Location = new System.Drawing.Point(762, 7);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(89, 35);
+            this.btnLog.TabIndex = 13;
+            this.btnLog.Text = "GEÇMİŞ";
+            this.btnLog.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLog.UseVisualStyleBackColor = true;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
             // AnaForm
             // 
@@ -458,6 +513,7 @@ namespace SevkiyatTakipUI
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.panelAlt.ResumeLayout(false);
+            this.panelAlt.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSevkiyatlar)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -496,6 +552,10 @@ namespace SevkiyatTakipUI
         public System.Windows.Forms.Label lblGun;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnGuncelle;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblSevkiyatAdet;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnLog;
     }
 }
 

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvancedDataGridView, Version=0.1.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ADGV.0.1.0.10\lib\net40\AdvancedDataGridView.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -63,6 +66,12 @@
     <Compile Include="GuncellemeGir.Designer.cs">
       <DependentUpon>GuncellemeGir.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Parametre.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,11 +87,20 @@
     <Compile Include="SevkiyatGiris.Designer.cs">
       <DependentUpon>SevkiyatGiris.cs</DependentUpon>
     </Compile>
+    <Compile Include="SevkiyatHareketleri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SevkiyatHareketleri.Designer.cs">
+      <DependentUpon>SevkiyatHareketleri.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AnaForm.resx">
       <DependentUpon>AnaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuncellemeGir.resx">
       <DependentUpon>GuncellemeGir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -98,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SevkiyatGiris.resx">
       <DependentUpon>SevkiyatGiris.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SevkiyatHareketleri.resx">
+      <DependentUpon>SevkiyatHareketleri.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

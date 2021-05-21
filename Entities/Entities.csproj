@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arac.cs" />
+    <Compile Include="DTOs\LogView.cs" />
     <Compile Include="DTOs\SevkiyatGuncellemeView.cs" />
     <Compile Include="DTOs\SevkiyatView.cs" />
     <Compile Include="Durum.cs" />

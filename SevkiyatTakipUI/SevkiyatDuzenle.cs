@@ -26,21 +26,21 @@ namespace SevkiyatTakipUI
         SevkiyatManager sevkiyatManager = new SevkiyatManager(new AdSevkiyatDal());
         private void SevkiyatDuzenle_Load(object sender, EventArgs e)
         {
-            cmbMusteri.DataSource = musteriManager.MusteriListele();
-            cmbMusteri.DisplayMember = "MusteriAd";
-            cmbMusteri.ValueMember = "Id";
+            Araclar.LoadComboBox(cmbMusteri, musteriManager.MusteriListele(), "MusteriAd", "Id");
 
-            cmbArac.DataSource = aracManager.SevkAracListele();
-            cmbArac.DisplayMember = "AracAd";
-            cmbArac.ValueMember = "Id";
+            Araclar.LoadComboBox(cmbArac, aracManager.SevkAracListele(), "AracAd", "Id");
 
-            cmbYuklemeTip.DataSource = yuklemeTipManager.YuklemeTipListele();
-            cmbYuklemeTip.DisplayMember = "YuklemeTipAd";
-            cmbYuklemeTip.ValueMember = "Id";
+            Araclar.LoadComboBox(cmbYuklemeTip, yuklemeTipManager.YuklemeTipListele(), "YuklemeTipAd", "Id");
 
             Araclar.AutoComplete(cmbMusteri);
 
-            Sevkiyat sevkiyat = sevkiyatManager.SevkiyatDeger(Parametre.sevkiyatId);
+            SevkiyatDegerleriGetir();
+
+        }
+
+        private void SevkiyatDegerleriGetir()
+        {
+            var sevkiyat = sevkiyatManager.SevkiyatDeger(Parametre.sevkiyatId);
 
             cmbMusteri.SelectedValue = sevkiyat.MusteriId;
             cmbYuklemeTip.SelectedValue = sevkiyat.YuklemeTipId;
@@ -52,14 +52,17 @@ namespace SevkiyatTakipUI
             txtPlakaNo.Text = sevkiyat.PlakaNo;
             dateTimePicker1.Value = sevkiyat.TerminTarih;
             lblSevkiyatId.Text = sevkiyat.Id.ToString();
-
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-            SevkiyatGuncelle();
+            if (UpdateControl())
+            {
+                SevkiyatGuncelle();
 
-            MessageBox.Show(Constants.BasariliGuncelleme, Constants.MesajBaslik);
+                MessageBox.Show(Constants.BasariliGuncelleme, Constants.MesajBaslik);
+            }
+            
         }
 
         private void SevkiyatGuncelle()
@@ -110,6 +113,49 @@ namespace SevkiyatTakipUI
                 ((AnaForm)Application.OpenForms["anaForm"]).lblGun.Text = ((AnaForm)Application.OpenForms["anaForm"]).cmbGun.Text;
 
 
+            }
+        }
+
+        private void cmbMusteri_Leave(object sender, EventArgs e)
+        {
+            Araclar.CombobxControl(cmbMusteri, label3);
+        }
+
+        bool UpdateControl()
+        {
+            if (string.IsNullOrEmpty(txtSiparisNo.Text))
+            {
+                MessageBox.Show(Constants.SiparisNoBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if ((int)cmbMusteri.SelectedValue == 0)
+            {
+                MessageBox.Show(Constants.MusteriIdBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if (numAdet.Value == 0)
+            {
+                MessageBox.Show(Constants.AdetBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if ((int)cmbArac.SelectedValue == 0)
+            {
+                MessageBox.Show(Constants.AracIdBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtPlakaNo.Text))
+            {
+                MessageBox.Show(Constants.PlakaNoBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if ((int)cmbYuklemeTip.SelectedValue == 0)
+            {
+                MessageBox.Show(Constants.YuklemeTipIdBos, Constants.MesajBaslik);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

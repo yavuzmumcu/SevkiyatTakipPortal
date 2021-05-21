@@ -1,0 +1,50 @@
+﻿@using Entities.DTOs
+@model List<SevkiyatView>
+    
+
+
+    <div class="=container-md">
+        <table class="table table-responsive table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Müşteri Adı</th>
+                    <th>Sipariş No</th>
+                    <th>Termin Tarih</th>
+                    <th>Açıklama</th>
+                    <th>Sevj Aracı</th>
+                    <th>Yükleme Şekli</th>
+                </tr>
+            </thead>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+
+
+                <tbody>
+                    <tr>
+                        <td>
+                            @(i+1)
+                        </td>
+                        <td>
+                            @Model[i].MusteriAd
+                        </td>
+                        <td>
+                            @Model[i].SiparisNo
+                        </td>
+                        <td>
+                            @Model[i].TerminTarih
+                        </td>
+                        <td>
+                            @Model[i].Aciklama
+                        </td>
+                        <td>
+                            @Model[i].SevkAraci
+                        </td>
+                        <td>
+                            @Model[i].YuklemeTip
+                        </td>
+                    </tr>
+                </tbody>
+            }
+            </table>
+</div>

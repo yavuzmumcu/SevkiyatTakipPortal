@@ -1,0 +1,38 @@
+﻿@using Entities.DTOs
+@model List<SevkiyatView>
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <table class="table table-bordered table-responsive-md">
+        @foreach (var item in Model)
+        {
+
+
+        <tr>
+            <td>
+                @item.MusteriAd
+            </td>
+            <td>
+                @item.SiparisNo
+            </td>
+            <td>
+                @item.TerminTarih
+            </td>
+            <td>
+                @item.Aciklama
+            </td>
+            <td>
+                @item.SevkAraci
+            </td>
+            <td>
+                @item.YuklemeTip
+            </td>
+        </tr>
+        }
+    </table>
+
+</div>

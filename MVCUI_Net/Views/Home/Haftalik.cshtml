@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Haftalik";
+}
+@using Entities.DTOs
+@model List<SevkiyatView>
+
+<style>
+    #myInput {
+        background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+        background-position: 10px 12px; /* Position the search icon */
+        background-repeat: no-repeat; /* Do not repeat the icon image */
+        width: 100%; /* Full-width */
+        font-size: 16px; /* Increase font-size */
+        padding: 12px 20px 12px 40px; /* Add some padding */
+        border: 1px solid #ddd; /* Add a grey border */
+        margin-bottom: 12px; /* Add some space below the input */
+    }
+
+   
+</style>
+<div class="=container">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Müşteri Adı Ara..">
+
+    <form action="Ara" method="get">
+        <input list="yillar" name="yil">
+        <datalist id="yillar">
+            <option value="2021">
+
+        </datalist>
+
+        <input list="haftalar" name="hafta">
+        <datalist id="haftalar">
+            @for (int j = 1; j < 55; j++)
+            {
+                <option value="@j" />
+            }
+        </datalist>
+
+        <input list="Gunler" name="gun">
+        <datalist id="Gunler">
+
+            @for (int j = 1; j < 8; j++)
+            {
+                <option value="@j" />
+            }
+        </datalist>
+        <input type="submit" name="=Ara" />
+    </form>
+    <table id="myTable" class="table table-sm table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Müşteri Adı</th>
+                <th>Sipariş No</th>
+                <th>Termin Tarih</th>
+                <th>Açıklama</th>
+                <th>Sevj Aracı</th>
+                <th>Yükleme Şekli</th>
+            </tr>
+        </thead>
+
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+
+
+            <tbody>
+                <tr>
+                    <td>
+                        @(i+1)
+                    </td>
+                    <td>
+                        @Model[i].MusteriAd
+                    </td>
+                    <td>
+                        @Model[i].SiparisNo
+                    </td>
+                    <td>
+                        @Model[i].TerminTarih
+                    </td>
+                    <td>
+                        @Model[i].Aciklama
+                    </td>
+                    <td>
+                        @Model[i].SevkAraci
+                    </td>
+                    <td>
+                        @Model[i].YuklemeTip
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+</div>

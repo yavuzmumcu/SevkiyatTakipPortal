@@ -33,7 +33,7 @@ namespace DataAccess.Concrete.AdoNET
 
         public List<SevkiyatGuncellemeView> Listele()
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM SevkiyatTakip.View_sevkiyatGuncellemeleri", Connection.sqlConn);
+            SqlCommand command = new SqlCommand("SELECT Top(20) * FROM SevkiyatTakip.View_sevkiyatGuncellemeleri", Connection.sqlConn);
             try
             {
                 Connection.OpenConnection();

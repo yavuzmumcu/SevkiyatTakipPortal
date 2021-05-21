@@ -38,6 +38,8 @@ namespace SevkiyatTakipUI
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.Termin = new System.Windows.Forms.Label();
+            this.lblTerminTarih = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSevkiyatGuncellemeleri)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,11 +133,32 @@ namespace SevkiyatTakipUI
             this.label3.TabIndex = 8;
             this.label3.Text = "Durum";
             // 
+            // Termin
+            // 
+            this.Termin.AutoSize = true;
+            this.Termin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Termin.Location = new System.Drawing.Point(64, 90);
+            this.Termin.Name = "Termin";
+            this.Termin.Size = new System.Drawing.Size(52, 15);
+            this.Termin.TabIndex = 10;
+            this.Termin.Text = "Termin";
+            // 
+            // lblTerminTarih
+            // 
+            this.lblTerminTarih.AutoSize = true;
+            this.lblTerminTarih.Location = new System.Drawing.Point(152, 92);
+            this.lblTerminTarih.Name = "lblTerminTarih";
+            this.lblTerminTarih.Size = new System.Drawing.Size(35, 13);
+            this.lblTerminTarih.TabIndex = 9;
+            this.lblTerminTarih.Text = "label5";
+            // 
             // GuncellemeGir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 363);
+            this.Controls.Add(this.Termin);
+            this.Controls.Add(this.lblTerminTarih);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -149,6 +172,7 @@ namespace SevkiyatTakipUI
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GuncellemeGir";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GuncellemeGir";
             this.Load += new System.EventHandler(this.GuncellemeGir_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSevkiyatGuncellemeleri)).EndInit();
@@ -168,5 +192,7 @@ namespace SevkiyatTakipUI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Termin;
+        private System.Windows.Forms.Label lblTerminTarih;
     }
 }

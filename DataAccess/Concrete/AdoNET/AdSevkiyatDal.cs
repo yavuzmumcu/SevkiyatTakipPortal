@@ -162,6 +162,7 @@ namespace DataAccess.Concrete.AdoNET
                             TerminTarih = Convert.ToDateTime(dataReader["TerminTarih"]),
                             Durum = dataReader["Durum"].ToString(),
                             Adet = Convert.ToInt32(dataReader["Adet"]),
+                            
 
 
 
@@ -294,6 +295,58 @@ namespace DataAccess.Concrete.AdoNET
                 Connection.sqlConn.Close();
 
                 return sonuc;
+            }
+        }
+
+        public List<LogView> LogListele()
+        {
+            using (SqlCommand command = new SqlCommand("SELECT * FROM SevkiyatTakip.View_Sevkiyat_Log order by Id desc ", Connection.sqlConn))
+            {
+                
+
+                Connection.OpenConnection();
+
+                SqlDataReader dataReader = command.ExecuteReader();
+
+
+                if (dataReader.HasRows)
+                {
+                    List<LogView> logViews = new List<LogView>();
+                    while (dataReader.Read())
+                    {
+
+                        logViews.Add(new LogView
+                        { 
+                           Id = Convert.ToInt32(dataReader["Id"]),
+                            SevkiyatId = Convert.ToInt32(dataReader["SevkiyatId"]),
+                        MusteriAd = dataReader["MusteriAd"].ToString(),
+                        Adet = Convert.ToInt32(dataReader["EskiAdet"]),
+                        AracAd = dataReader["SevkAraci"].ToString(),
+                        PlakaNo = dataReader["EskiPlakaNo"].ToString(),
+                        YuklemeTipAd = dataReader["YuklemeTip"].ToString(),
+                       
+                        Aciklama = dataReader["EskiAciklama"].ToString(),
+                        
+                        SiparisNo = dataReader["EskiSiparisNo"].ToString(),
+                        TerminTarih = Convert.ToDateTime(dataReader["EskiTerminTarih"]),
+                        DurumAd = dataReader["Durum"].ToString(),
+                        Islem= dataReader["Islem"].ToString(),
+                        IslemTarih = Convert.ToDateTime(dataReader["IslemTarih"])
+
+                        });
+                    }
+                    Connection.sqlConn.Close();
+                    dataReader.Close();
+                    return logViews;
+                }
+                else
+                {
+                    Connection.sqlConn.Close();
+                    dataReader.Close();
+                    return null;
+                }
+
+
             }
         }
     }

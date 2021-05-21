@@ -44,6 +44,11 @@ namespace Business.Concrete
             return _sevkiyatDal.HaftalikSevkiyatlar(yil, hafta);
         }
 
+        public List<LogView> LogListele()
+        {
+            return _sevkiyatDal.LogListele();
+        }
+
         public Sevkiyat SevkiyatDeger(int sevkiyatId)
         {
             return _sevkiyatDal.SevkiyatDeger(sevkiyatId);

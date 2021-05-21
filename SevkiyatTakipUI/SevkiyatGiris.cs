@@ -29,54 +29,23 @@ namespace SevkiyatTakipUI
 
         private void SevkiyatGiris_Load(object sender, EventArgs e)
         {
-            cmbMusteri.DataSource = musteriManager.MusteriListele();
-            cmbMusteri.DisplayMember = "MusteriAd";
-            cmbMusteri.ValueMember = "Id";
+            Araclar.LoadComboBox(cmbMusteri, musteriManager.MusteriListele(), "MusteriAd", "Id");
 
-            cmbArac.DataSource = aracManager.SevkAracListele();
-            cmbArac.DisplayMember = "AracAd";
-            cmbArac.ValueMember = "Id";
+            Araclar.LoadComboBox(cmbArac, aracManager.SevkAracListele(), "AracAd", "Id");
 
-            cmbYuklemeTip.DataSource = yuklemeTipManager.YuklemeTipListele();
-            cmbYuklemeTip.DisplayMember = "YuklemeTipAd";
-            cmbYuklemeTip.ValueMember = "Id";
+            Araclar.LoadComboBox(cmbYuklemeTip, yuklemeTipManager.YuklemeTipListele(), "YuklemeTipAd", "Id");
 
             Araclar.AutoComplete(cmbMusteri);
-            
+
         }
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSiparisNo.Text))
-            {
-                MessageBox.Show(Constants.SiparisNoBos, Constants.MesajBaslik);
-            }
-            else if ((int)cmbMusteri.SelectedValue == 0)
-            {
-                MessageBox.Show(Constants.MusteriIdBos, Constants.MesajBaslik);
-            }
-            else if (numAdet.Value == 0)
-            {
-                MessageBox.Show(Constants.AdetBos, Constants.MesajBaslik);
-            }
-            else if ((int)cmbArac.SelectedValue == 0)
-            {
-                MessageBox.Show(Constants.AracIdBos, Constants.MesajBaslik);
-            }
-            else if (string.IsNullOrEmpty(txtPlakaNo.Text))
-            {
-                MessageBox.Show(Constants.PlakaNoBos, Constants.MesajBaslik);
-            }
-            else if ((int)cmbYuklemeTip.SelectedValue == 0)
-            {
-                MessageBox.Show(Constants.YuklemeTipIdBos, Constants.MesajBaslik);
-            }                    
-            else
+            if (AddControl())
             {
                 SevkiyatEkle();
                 MessageBox.Show(Constants.Basarili, Constants.MesajBaslik);
             }
-            
         }
 
         private void SevkiyatEkle()
@@ -113,15 +82,58 @@ namespace SevkiyatTakipUI
             {
                 ((AnaForm)Application.OpenForms["anaForm"]).dgvSevkiyatlar.DataSource = sevkiyatManager.GunlukSevkiyatlariListele(Parametre.currentYear, Parametre.currentWeek, Parametre.currentday);
 
-                ((AnaForm)Application.OpenForms["anaForm"]).cmbYil.Text= Parametre.currentYear.ToString();
-                ((AnaForm)Application.OpenForms["anaForm"]). cmbHafta.Text = Parametre.currentWeek.ToString();
-                ((AnaForm)Application.OpenForms["anaForm"]).cmbGun.SelectedIndex= Parametre.currentday-1;
+                ((AnaForm)Application.OpenForms["anaForm"]).cmbYil.Text = Parametre.currentYear.ToString();
+                ((AnaForm)Application.OpenForms["anaForm"]).cmbHafta.Text = Parametre.currentWeek.ToString();
+                ((AnaForm)Application.OpenForms["anaForm"]).cmbGun.SelectedIndex = Parametre.currentday - 1;
 
                 ((AnaForm)Application.OpenForms["anaForm"]).lblYil.Text = ((AnaForm)Application.OpenForms["anaForm"]).cmbYil.Text + ",";
                 ((AnaForm)Application.OpenForms["anaForm"]).lblHafta.Text = ((AnaForm)Application.OpenForms["anaForm"]).cmbHafta.Text + ",";
                 ((AnaForm)Application.OpenForms["anaForm"]).lblGun.Text = ((AnaForm)Application.OpenForms["anaForm"]).cmbGun.Text;
 
 
+            }
+        }
+
+        private void cmbMusteri_Leave(object sender, EventArgs e)
+        {
+            Araclar.CombobxControl(cmbMusteri, label3);
+        }
+
+        bool AddControl()
+        {
+            if (string.IsNullOrEmpty(txtSiparisNo.Text))
+            {
+                MessageBox.Show(Constants.SiparisNoBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if ((int)cmbMusteri.SelectedValue == 0)
+            {
+                MessageBox.Show(Constants.MusteriIdBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if (numAdet.Value == 0)
+            {
+                MessageBox.Show(Constants.AdetBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if ((int)cmbArac.SelectedValue == 0)
+            {
+                MessageBox.Show(Constants.AracIdBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if (string.IsNullOrEmpty(txtPlakaNo.Text))
+            {
+                MessageBox.Show(Constants.PlakaNoBos, Constants.MesajBaslik);
+                return false;
+            }
+            else if ((int)cmbYuklemeTip.SelectedValue == 0)
+            {
+                MessageBox.Show(Constants.YuklemeTipIdBos, Constants.MesajBaslik);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

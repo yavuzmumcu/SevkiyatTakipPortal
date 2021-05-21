@@ -97,6 +97,8 @@ namespace SevkiyatTakipUI
                 lblGorunumAd.Text = "HAFTALIK GÖRÜNÜM";
                 Parametre.sevkiyatId = 0;
             }
+
+            lblSevkiyatAdet.Text = dgvSevkiyatlar.Rows.Count.ToString();
         }
 
         private void GunlukSevkListele()
@@ -158,9 +160,7 @@ namespace SevkiyatTakipUI
       
         private void btnHaftalikGorunum_Click(object sender, EventArgs e)
         {
-            HafalikSevkListele();
-
-           
+            HafalikSevkListele();          
         }
 
         private void btnExcel_Click(object sender, EventArgs e)
@@ -253,6 +253,16 @@ namespace SevkiyatTakipUI
                 new GuncellemeGir().ShowDialog();
             }
                
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new SevkiyatHareketleri().ShowDialog();
+        }
+
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            new LogForm().ShowDialog();
         }
     }
 }

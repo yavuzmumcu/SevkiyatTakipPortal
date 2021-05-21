@@ -25,5 +25,7 @@ namespace Business.Abstract
         SevkiyatView SevkiyatViewDeger(int sevkiyatId);
 
         int DurumGuncelle(Sevkiyat sevkiyat);
+
+        List<LogView> LogListele();
     }
 }
